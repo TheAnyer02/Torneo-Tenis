@@ -4,7 +4,7 @@
     Public Property Nombre As String
     Public Property Fecha As Date
     Public Property Puntos As Int16
-    Public Property Pais As String
+    Public Property Pais As Pais
     Public ReadOnly Property PerDAO As JugadoraDAO
 
     Public Sub New()
