@@ -3,7 +3,7 @@ Public Class Torneo
     Public Property idTorneo As Int16
     Public Property NombreTorneo As String
     Public Property CiudadTorneo As String
-    Public Property PaisTorneo As Char
+    Public Property PaisTorneo As Pais
     Public ReadOnly Property PerDAO As TorneoDAO
 
     Public Sub New()
