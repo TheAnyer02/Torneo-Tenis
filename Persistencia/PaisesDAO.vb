@@ -32,7 +32,7 @@
         Return AgenteBD.ObtenerAgente.Modificar("UPDATE Torneos SET NombrePais='" & p.NombrePais & "' WHERE idPais='" & p.idPais & "';")
     End Function
 
-    Public Function Borrar(ByVal p As Torneo) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM Torneos WHERE idTorneo='" & p.idTorneo & "';")
+Public Function Borrar(ByVal p As Paises) As Integer
+    Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM Torneos WHERE idTorneo='" & p.idPais & "';")
     End Function
 End Class
