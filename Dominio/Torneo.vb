@@ -1,31 +1,29 @@
-﻿Public Class Torneo
+Public Class Torneo
 
-    Public Property IDJugadora As Int16
-    Public Property Nombre As String
-    Public Property Fecha As Date
-    Public Property Puntos As Int16
-    Public Property Pais As String
-    Public ReadOnly Property PerDAO As JugadoraDAO
+    Public Property idTorneo As Int16
+    Public Property NombreTorneo As String
+    Public Property CiudadTorneo As String
+    Public Property PaisTorneo As Char
+    Public ReadOnly Property PerDAO As TorneoDAO
 
     Public Sub New()
-        Me.PerDAO = New JugadoraDAO
+        Me.PerDAO = New TorneoDAO
     End Sub
 
     Public Sub New(id As String)
-        Me.PerDAO = New JugadoraDAO
-        Me.IDJugadora = id
-        Me.Puntos = 0
+        Me.PerDAO = New TorneoDAO
+        Me.idTorneo = id
     End Sub
 
-    Public Sub LeerTodasJugadoras()
+    Public Sub LeerTodosTorneos()
         Me.PerDAO.LeerTodas()
     End Sub
 
-    Public Sub LeerJugadora()
+    Public Sub LeerTorneo()
         Me.PerDAO.Leer(Me)
     End Sub
 
-    Public Function InsertarJugadora() As Integer
+    Public Function InsertarTorneo() As Integer
         Return Me.PerDAO.Insertar(Me)
     End Function
 
