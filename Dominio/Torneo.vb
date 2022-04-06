@@ -27,11 +27,11 @@ Public Class Torneo
         Return Me.PerDAO.Insertar(Me)
     End Function
 
-    Public Function ActualizarJugadora() As Integer
+    Public Function ActualizarTorneo() As Integer
         Return Me.PerDAO.Actualizar(Me)
     End Function
 
-    Public Function BorrarJugadora() As Integer
+    Public Function BorrarTorneo() As Integer
         Return Me.PerDAO.Borrar(Me)
     End Function
 
