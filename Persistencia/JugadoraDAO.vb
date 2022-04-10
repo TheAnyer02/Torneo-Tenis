@@ -1,4 +1,4 @@
-Public Class JugadoraDAO
+﻿Public Class JugadoraDAO
 
     Public ReadOnly Property Jugadoras As Collection
 
@@ -30,11 +30,11 @@ Public Class JugadoraDAO
 
     Public Function Insertar(ByVal p As Jugadora) As Integer
         Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO Jugadoras VALUES ('" & p.IDJugadora & "', '" & p.Nombre & "', '" & p.Fecha & "',
-        '" & p.Puntos & "', '" & p.Pais.idPais & "';")
+        '" & p.Puntos & "', '" & p.Pais.idPais & "');")
     End Function
 
     Public Function Actualizar(ByVal p As Jugadora) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Jugadoras SET NombreJugadora='" & p.Nombre & "',  FechaNacimientoJugadora='" & p.Fecha & "', PuntosJugadora='" & p.Puntos & "', PaisJugadora='" & p.Pais.idPais & "' WHERE idJugadora='" & p.IDJugadora & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Jugadoras SET NombreJugadora='" & p.Nombre & "',  FechaNacimientoJugadora='" & p.Fecha & "', PuntosJugadora='" & p.Puntos & "', PaisJugadora='" & p.Pais.idPais & "' WHERE idJugadora='" & p.IDJugadora & "');")
     End Function
 
     Public Function Borrar(ByVal p As Jugadora) As Integer

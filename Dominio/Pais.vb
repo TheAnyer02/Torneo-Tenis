@@ -14,6 +14,7 @@
         Me.idPais = id
     End Sub
 
+
     Public Sub LeerTodosPaises()
         Me.PerDAO.LeerTodas()
     End Sub
@@ -33,5 +34,7 @@
     Public Function BorrarPais() As Integer
         Return Me.PerDAO.Borrar(Me)
     End Function
+    Public Function getNombre() As Integer
+        Return Me.NombrePais
+    End Function
 End Class
-

@@ -25,11 +25,11 @@
     End Sub
 
     Public Function Insertar(ByVal p As Pais) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO Paises VALUES ('" & p.idPais & "', '" & p.NombrePais & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO Paises VALUES ('" & p.idPais & "', '" & p.NombrePais & "');")
     End Function
 
     Public Function Actualizar(ByVal p As Pais) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Paises SET NombrePais='" & p.NombrePais & "' WHERE idPais='" & p.idPais & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Paises SET NombrePais='" & p.NombrePais & "' WHERE idPais='" & p.idPais & "');")
     End Function
 
     Public Function Borrar(ByVal p As Pais) As Integer

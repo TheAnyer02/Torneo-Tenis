@@ -1,4 +1,4 @@
-Public Class Torneo
+﻿Public Class Torneo
 
     Public Property idTorneo As Int16
     Public Property NombreTorneo As String
