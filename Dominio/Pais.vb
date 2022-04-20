@@ -1,6 +1,6 @@
 ﻿Public Class Pais
 
-    Public Property idPais As Char
+    Public Property idPais As String
     Public Property NombrePais As String
 
     Public ReadOnly Property PerDAO As PaisesDAO
@@ -8,10 +8,14 @@
     Public Sub New()
         Me.PerDAO = New PaisesDAO
     End Sub
-
     Public Sub New(id As String)
         Me.PerDAO = New PaisesDAO
         Me.idPais = id
+    End Sub
+    Public Sub New(id As String, NombrePais As String)
+        Me.PerDAO = New PaisesDAO
+        Me.idPais = id
+        Me.NombrePais = NombrePais
     End Sub
 
 

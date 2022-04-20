@@ -15,7 +15,7 @@
             p.Nombre = aux(2).ToString
             p.Fecha = aux(3).ToString
             p.Puntos = aux(4).ToString
-            p.Pais.idPais = aux(5).ToString
+            p.Pais = New Pais(aux(5).ToString)
             Me.Jugadoras.Add(p)
         Next
     End Sub
@@ -25,6 +25,10 @@
         col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM Jugadoras WHERE idJugadora='" & p.IDJugadora & "';")
         For Each aux In col
             p.Nombre = aux(2).ToString
+            p.Nombre = aux(2).ToString
+            p.Fecha = aux(3).ToString
+            p.Puntos = aux(4).ToString
+            p.Pais = New Pais(aux(5).ToString)
         Next
     End Sub
 
@@ -34,7 +38,7 @@
     End Function
 
     Public Function Actualizar(ByVal p As Jugadora) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Jugadoras SET NombreJugadora='" & p.Nombre & "',  FechaNacimientoJugadora='" & p.Fecha & "', PuntosJugadora='" & p.Puntos & "', PaisJugadora='" & p.Pais.idPais & "' WHERE idJugadora='" & p.IDJugadora & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Jugadoras SET NombreJugadora='" & p.Nombre & "',  FechaNacimientoJugadora='" & p.Fecha & "', PuntosJugadora='" & p.Puntos & "', PaisJugadora='" & p.Pais.idPais & "' WHERE idJugadora='" & p.IDJugadora & "';")
     End Function
 
     Public Function Borrar(ByVal p As Jugadora) As Integer

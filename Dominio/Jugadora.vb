@@ -2,7 +2,7 @@
 
     Public Property IDJugadora As Int16
     Public Property Nombre As String
-    Public Property Fecha As Date
+    Public Property Fecha As String
     Public Property Puntos As Int16
     Public Property Pais As Pais
     Public ReadOnly Property PerDAO As JugadoraDAO
@@ -24,7 +24,9 @@
     Public Sub LeerJugadora()
         Me.PerDAO.Leer(Me)
     End Sub
-
+    Public Function ObtenerPais()
+        Return Me.Pais.idPais
+    End Function
     Public Function InsertarJugadora() As Integer
         Return Me.PerDAO.Insertar(Me)
     End Function

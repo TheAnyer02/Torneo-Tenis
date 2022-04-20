@@ -25,6 +25,7 @@ Partial Class Main
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabJugadoras = New System.Windows.Forms.TabPage()
         Me.DateJugadora = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.BTNLimpiarJUG = New System.Windows.Forms.Button()
         Me.BTNEliminarJUG = New System.Windows.Forms.Button()
         Me.BTNActualizarJUG = New System.Windows.Forms.Button()
@@ -50,6 +51,8 @@ Partial Class Main
         Me.Label6 = New System.Windows.Forms.Label()
         Me.LSTTorneos = New System.Windows.Forms.ListBox()
         Me.TabPaises = New System.Windows.Forms.TabPage()
+        Me.IDPAIS = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.BTNLimpiarPais = New System.Windows.Forms.Button()
         Me.BTNEliminarPais = New System.Windows.Forms.Button()
         Me.BTNActualizarPais = New System.Windows.Forms.Button()
@@ -57,8 +60,6 @@ Partial Class Main
         Me.TXTNombrePais = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.LSTPais = New System.Windows.Forms.ListBox()
-        Me.IDPAIS = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
         Me.TabControl2.SuspendLayout()
         Me.TabJugadoras.SuspendLayout()
         Me.TabTorneos.SuspendLayout()
@@ -79,6 +80,7 @@ Partial Class Main
         'TabJugadoras
         '
         Me.TabJugadoras.Controls.Add(Me.DateJugadora)
+        Me.TabJugadoras.Controls.Add(Me.Label9)
         Me.TabJugadoras.Controls.Add(Me.BTNLimpiarJUG)
         Me.TabJugadoras.Controls.Add(Me.BTNEliminarJUG)
         Me.TabJugadoras.Controls.Add(Me.BTNActualizarJUG)
@@ -99,10 +101,19 @@ Partial Class Main
         '
         'DateJugadora
         '
-        Me.DateJugadora.Location = New System.Drawing.Point(244, 148)
+        Me.DateJugadora.Location = New System.Drawing.Point(246, 157)
         Me.DateJugadora.Name = "DateJugadora"
-        Me.DateJugadora.Size = New System.Drawing.Size(162, 27)
-        Me.DateJugadora.TabIndex = 12
+        Me.DateJugadora.Size = New System.Drawing.Size(160, 27)
+        Me.DateJugadora.TabIndex = 13
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(321, 125)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(111, 20)
+        Me.Label9.TabIndex = 12
+        Me.Label9.Text = "(YYYY-MM-DD)"
         '
         'BTNLimpiarJUG
         '
@@ -348,6 +359,23 @@ Partial Class Main
         Me.TabPaises.Text = "PAÍSES"
         Me.TabPaises.UseVisualStyleBackColor = True
         '
+        'IDPAIS
+        '
+        Me.IDPAIS.Location = New System.Drawing.Point(262, 138)
+        Me.IDPAIS.Name = "IDPAIS"
+        Me.IDPAIS.Size = New System.Drawing.Size(162, 27)
+        Me.IDPAIS.TabIndex = 24
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label8.Location = New System.Drawing.Point(262, 107)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(38, 28)
+        Me.Label8.TabIndex = 23
+        Me.Label8.Text = "ID:"
+        '
         'BTNLimpiarPais
         '
         Me.BTNLimpiarPais.Location = New System.Drawing.Point(540, 346)
@@ -410,23 +438,6 @@ Partial Class Main
         Me.LSTPais.Size = New System.Drawing.Size(191, 344)
         Me.LSTPais.TabIndex = 12
         '
-        'IDPAIS
-        '
-        Me.IDPAIS.Location = New System.Drawing.Point(262, 138)
-        Me.IDPAIS.Name = "IDPAIS"
-        Me.IDPAIS.Size = New System.Drawing.Size(162, 27)
-        Me.IDPAIS.TabIndex = 24
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label8.Location = New System.Drawing.Point(262, 107)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(38, 28)
-        Me.Label8.TabIndex = 23
-        Me.Label8.Text = "ID:"
-        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -479,7 +490,8 @@ Partial Class Main
     Friend WithEvents TXTNombrePais As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents LSTPais As ListBox
-    Friend WithEvents DateJugadora As TextBox
     Friend WithEvents IDPAIS As TextBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents DateJugadora As TextBox
+    Friend WithEvents Label9 As Label
 End Class
