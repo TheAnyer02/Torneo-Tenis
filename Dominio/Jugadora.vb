@@ -11,7 +11,7 @@
         Me.PerDAO = New JugadoraDAO
     End Sub
 
-    Public Sub New(id As String)
+    Public Sub New(id As Int16)
         Me.PerDAO = New JugadoraDAO
         Me.IDJugadora = id
         Me.Puntos = 0

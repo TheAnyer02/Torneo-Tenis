@@ -24,7 +24,7 @@ Partial Class Main
     Private Sub InitializeComponent()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabJugadoras = New System.Windows.Forms.TabPage()
-        Me.DateJugadora = New System.Windows.Forms.TextBox()
+        Me.DateJugadora = New System.Windows.Forms.DateTimePicker()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.BTNLimpiarJUG = New System.Windows.Forms.Button()
         Me.BTNEliminarJUG = New System.Windows.Forms.Button()
@@ -101,9 +101,11 @@ Partial Class Main
         '
         'DateJugadora
         '
-        Me.DateJugadora.Location = New System.Drawing.Point(246, 157)
+        Me.DateJugadora.CustomFormat = "yyyy-MM-dd"
+        Me.DateJugadora.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DateJugadora.Location = New System.Drawing.Point(244, 148)
         Me.DateJugadora.Name = "DateJugadora"
-        Me.DateJugadora.Size = New System.Drawing.Size(160, 27)
+        Me.DateJugadora.Size = New System.Drawing.Size(250, 27)
         Me.DateJugadora.TabIndex = 13
         '
         'Label9
@@ -492,6 +494,6 @@ Partial Class Main
     Friend WithEvents LSTPais As ListBox
     Friend WithEvents IDPAIS As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents DateJugadora As TextBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents DateJugadora As DateTimePicker
 End Class

@@ -1,8 +1,15 @@
-﻿Public Class Main
+﻿Imports System.Globalization
+
+Public Class Main
     Private j As Jugadora
     Private p As Pais
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CargarJugadoras()
+        CargarPaises()
+    End Sub
+    '-------------------------------Pestaña jugadoras
+    Private Sub CargarJugadoras()
         '---------Actualizar jugadoras---------
         Dim pAux As Jugadora
         Me.j = New Jugadora
@@ -15,6 +22,8 @@
             Me.ListJugadoras.Items.Add(pAux.IDJugadora)
         Next
         BTNAñadirJUG.Enabled = True
+    End Sub
+    Private Sub CargarPaises()
         '--------Actualizar paises--------------'
         Dim paisAux As Pais
         Me.p = New Pais
@@ -28,17 +37,7 @@
         Next
         BTNAñadirPais.Enabled = True
     End Sub
-    '-------------------------------Pestaña jugadoras
-    Private Sub jugadoras_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        BTNAñadirJUG.Enabled = True
-        BTNActualizarJUG.Enabled = True
-        BTNEliminarJUG.Enabled = True
-
-    End Sub
     Private Sub ListJugadoras_SelectedTextChanged() Handles ListJugadoras.SelectedIndexChanged
-        Me.BTNActualizarJUG.Enabled = True
-        Me.BTNEliminarJUG.Enabled = True
-        Me.TXTNombreJUG.Enabled = True
         If Not Me.ListJugadoras.SelectedItem Is Nothing Then
             Me.j = New Jugadora(Me.ListJugadoras.SelectedItem.ToString)
             Try
@@ -55,12 +54,10 @@
     End Sub
     Private Sub BTNAñadirJUG_Click(sender As Object, e As EventArgs) Handles BTNAñadirJUG.Click
         If Me.TXTNombreJUG.Text <> String.Empty And Me.DateJugadora.Text <> String.Empty And Me.TXTPaisJUG.Text <> String.Empty Then
-            j = New Jugadora
+            j = New Jugadora()
             j.Nombre = TXTNombreJUG.Text
-            j.Fecha = DateJugadora.Text
-
             j.Pais = New Pais(TXTPaisJUG.Text)
-
+            j.Fecha = DateJugadora.Text
             Try
                 If j.InsertarJugadora <> 1 Then
                     MessageBox.Show("INSERT return <> 1", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -70,7 +67,8 @@
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Exit Sub
             End Try
-            Me.ListJugadoras.Items.Add(j.IDJugadora)
+            ListJugadoras.Items.Clear()
+            CargarJugadoras()
         End If
     End Sub
 
@@ -78,7 +76,7 @@
         If Not j Is Nothing Then
             j.Nombre = TXTNombreJUG.Text
             j.Fecha = DateJugadora.Text
-            j.Pais = New Pais(TXTNombrePais.Text)
+            j.Pais = New Pais(TXTPaisJUG.Text)
             Try
                 If j.ActualizarJugadora() <> 1 Then
                     MessageBox.Show("UPDATE return <> 1", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -88,7 +86,7 @@
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Exit Sub
             End Try
-            MessageBox.Show(j.Nombre & "Actualizado correctamente.")
+            MessageBox.Show(j.Nombre & " -> Actualizado correctamente.")
         End If
     End Sub
 
@@ -114,14 +112,9 @@
         Me.TXTNombreJUG.Text = String.Empty
         Me.DateJugadora.Text = String.Empty
         Me.TXTPaisJUG.Text = String.Empty
-        Me.BTNActualizarJUG.Enabled = False
-        Me.BTNEliminarJUG.Enabled = False
     End Sub
     '-------------------------------Pestaña Paises
     Private Sub LSTPais_SelectedTextChanged() Handles LSTPais.SelectedIndexChanged
-        Me.BTNActualizarPais.Enabled = True
-        Me.BTNEliminarPais.Enabled = True
-        Me.TXTNombrePais.Enabled = True
         If Not Me.LSTPais.SelectedItem Is Nothing Then
             Me.p = New Pais(Me.LSTPais.SelectedItem.ToString)
             Try
@@ -133,12 +126,6 @@
             Me.TXTNombrePais.Text = Me.p.NombrePais
             Me.IDPAIS.Text = Me.p.idPais
         End If
-    End Sub
-    Private Sub Paises_load(sender As Object, e As EventArgs) Handles MyBase.Load
-        BTNAñadirPais.Enabled = True
-        BTNActualizarPais.Enabled = True
-        BTNEliminarJUG.Enabled = True
-
     End Sub
     Private Sub BTNAñadirPais_Click(sender As Object, e As EventArgs) Handles BTNAñadirPais.Click
         If Me.TXTNombrePais.Text <> String.Empty And Me.IDPAIS.Text <> String.Empty Then
