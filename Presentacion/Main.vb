@@ -3,6 +3,7 @@
 Public Class Main
     Private j As Jugadora
     Private p As Pais
+    Private t As Torneo
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarJugadoras()
@@ -34,6 +35,19 @@ Public Class Main
         End Try
         For Each paisAux In Me.p.PerDAO.Paises
             Me.LSTPais.Items.Add(paisAux.idPais)
+        Next
+        BTNAñadirPais.Enabled = True
+    End Sub
+    Private Sub CargarTorneos()
+        Dim torneoAux As Torneo
+        Me.t = New Torneo
+        Try
+            Me.t.LeerTodosTorneos()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End Try
+        For Each torneoAux In Me.t.PerDAO.Torneo
+            Me.LSTPais.Items.Add(torneoAux.idTorneo)
         Next
         BTNAñadirPais.Enabled = True
     End Sub
@@ -69,6 +83,9 @@ Public Class Main
             End Try
             ListJugadoras.Items.Clear()
             CargarJugadoras()
+            TXTNombreJUG.Clear()
+            TXTPaisJUG.Clear()
+            DateJugadora.Refresh()
         End If
     End Sub
 
@@ -185,6 +202,69 @@ Public Class Main
         Me.TXTNombrePais.Text = String.Empty
         Me.IDPAIS.Text = String.Empty
     End Sub
+    Private Sub BTNAñadirTorneo_Click(sender As Object, e As EventArgs) Handles BTNAñadirTorneo.Click
+        If Me.TXTNombreTorneo.Text <> String.Empty And Me.TXTIdTorneo.Text <> String.Empty And Me.TXTCiudadTorneo.Text <> String.Empty And Me.TXTPaisTorneo.Text <> String.Empty Then
+            t = New Torneo()
+            t.idTorneo = TXTIdTorneo.Text
+            t.NombreTorneo = TXTNombreTorneo.Text
+            t.CiudadTorneo = TXTCiudadTorneo.Text
+            t.PaisTorneo = New Pais(TXTPaisTorneo.Text)
 
+            Try
+                If t.InsertarTorneo() <> 1 Then
+                    MessageBox.Show("INSERT return <> 1", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Exit Sub
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Exit Sub
+            End Try
+            Me.LSTTorneos.Items.Add(t.idTorneo)
+            CargarTorneos()
+        End If
+    End Sub
 
+    Private Sub BTNEliminarTorneo_Click(sender As Object, e As EventArgs) Handles BTNEliminarTorneo.Click
+        If Not Me.t Is Nothing Then
+            If MessageBox.Show("¿Estas seguro que quieres borrar " & Me.t.NombreTorneo & "?", "Por favor confirma.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                Try
+                    If Me.t.BorrarTorneo() <> 1 Then
+                        MessageBox.Show("DELETE return <> 1", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                        Exit Sub
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Exit Sub
+                End Try
+                Me.ListJugadoras.Items.Remove(t.idTorneo)
+            End If
+            Me.BTNLimpiarJUG.PerformClick()
+        End If
+    End Sub
+
+    Private Sub BTNActualizarTorneo_Click(sender As Object, e As EventArgs) Handles BTNActualizarTorneo.Click
+        If Not t Is Nothing Then
+            t.NombreTorneo = TXTNombreTorneo.Text
+            t.CiudadTorneo = TXTCiudadTorneo.Text
+            t.PaisTorneo = New Pais(TXTPaisTorneo.Text)
+            Try
+                If t.ActualizarTorneo() <> 1 Then
+                    MessageBox.Show("UPDATE return <> 1", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Exit Sub
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Exit Sub
+            End Try
+            MessageBox.Show(j.Nombre & " -> Actualizado correctamente.")
+        End If
+    End Sub
+
+    Private Sub BTNLimpiarTorneo_Click(sender As Object, e As EventArgs) Handles BTNLimpiarTorneo.Click
+        Me.TXTIdTorneo.Text = String.Empty
+        Me.TXTNombreTorneo.Text = String.Empty
+        Me.TXTPaisTorneo.Text = String.Empty
+        Me.TXTCiudadTorneo.Text = String.Empty
+
+    End Sub
 End Class
