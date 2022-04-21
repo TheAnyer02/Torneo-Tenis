@@ -1,4 +1,4 @@
-﻿Imports System.Globalization
+Imports System.Globalization
 
 Public Class Main
     Private j As Jugadora
@@ -8,6 +8,7 @@ Public Class Main
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarJugadoras()
         CargarPaises()
+        CargarTorneos()
     End Sub
     '-------------------------------Pestaña jugadoras
     Private Sub CargarJugadoras()
@@ -47,7 +48,7 @@ Public Class Main
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         For Each torneoAux In Me.t.PerDAO.Torneo
-            Me.LSTPais.Items.Add(torneoAux.idTorneo)
+            Me.LSTTorneos.Items.Add(torneoAux.idTorneo)
         Next
         BTNAñadirPais.Enabled = True
     End Sub
@@ -220,7 +221,6 @@ Public Class Main
                 Exit Sub
             End Try
             Me.LSTTorneos.Items.Add(t.idTorneo)
-            CargarTorneos()
         End If
     End Sub
 
@@ -266,5 +266,25 @@ Public Class Main
         Me.TXTPaisTorneo.Text = String.Empty
         Me.TXTCiudadTorneo.Text = String.Empty
 
+    End Sub
+
+    Private Sub ListJugadoras_SelectedTextChanged(sender As Object, e As EventArgs) Handles ListJugadoras.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub LSTTorneos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LSTTorneos.SelectedIndexChanged
+        If Not Me.LSTTorneos.SelectedItem Is Nothing Then
+            Me.t = New Torneo(Me.LSTTorneos.SelectedItem.ToString)
+            Try
+                Me.t.LeerTorneo()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Exit Sub
+            End Try
+            Me.TXTIdTorneo.Text = t.idTorneo.ToString
+            Me.TXTNombreTorneo.Text = t.NombreTorneo.ToString
+            Me.TXTPaisTorneo.Text = t.PaisTorneo.ToString
+            Me.TXTCiudadTorneo.Text = t.CiudadTorneo.ToString
+        End If
     End Sub
 End Class
